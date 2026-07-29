@@ -38,20 +38,20 @@
 
      <script>
 
- let randomNumber=Math.floor(Math.random()  *   100)   +1
+ let randomNumber=Math.floor(Math.random() * 100) +1;
 
 const guesses=document.querySelector(".guesses");
-const lastResult=document.querySelector(".lastResult")
-const lowOrHi=document.querySelector("lowOrHi")
+const lastResult=document.querySelector(".lastResult");
+const lowOrHi=document.querySelector("lowOrHi");
 
-const guessSubmit=document.querySelector("guessSubmit")
-const guessField=ducument.querySelector(".guessField")
+const guessSubmit=document.querySelector("guessSubmit");
+const guessField=ducument.querySelector(".guessField");
 
 let guessCount=1;
 let resetButton;
 
 function checkGuess() {
-    const userGuess = Number(guessField.value)
+    const userGuess = Number(guessField.value);
     if (guessCount===1) {
         guesses.textContent = "Previous guesses:";
     }
@@ -81,7 +81,7 @@ function checkGuess() {
 }
 }
 
-guessSubmit.addEventListener("click", checkGuess)
+guessSubmit.addEventListener("click", checkGuess);
 
 function setGameOver(){
     guessField.disabled = true;
@@ -89,7 +89,7 @@ function setGameOver(){
     resetButton = document.creeateElement("button");
     resetButton.textContent = "Start new game"
     document.body.append(resetButton);
-    resetButton.addEventListener("click", resetGame)
+    resetButton.addEventListener("click", resetGame);
 }
 function resetGame() {
     guessCount = 1;
@@ -108,7 +108,7 @@ function resetGame() {
 
     lastResult.style.backgroundColor="white";
 
-    randomNumber=math.flor(math.random()*100)+1
+    randomNumber=math.flor(math.random()*100)+1;
 }
      </script>
     </body>
