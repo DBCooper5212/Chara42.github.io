@@ -30,7 +30,7 @@
         <input type="number" min="1" max="100" required id="GuessField" class="GuessFeild">
         <input type="submit" value="Submit guess" class="guessSubmit">
     </div>
-    <div class="resultParas">
+    <diHv class="resultParas">
         <p class="guesses"></p>
         <p class="lastResult"></p>
         <p class="LowOrHi"></p>
@@ -45,7 +45,7 @@ const lastResult=document.querySelector(".lastResult")
 const lowOrHi=document.querySelector("lowOrHi")
 
 const guessSubmit=document.querySelector("guessSubmit")
-const loOrHi=ducument.querySelector(".guessField")
+const guessField=ducument.querySelector(".guessField")
 
 let guessCount=1;
 let resetButton;
@@ -72,16 +72,43 @@ function checkGuess() {
     if (userGuess<randomNumber) {
         lowOrHi.textContent="Last guess was too low!";
     }else if (userGuess>randomNumber){
-        loOrHi.textContent="Last guess was too high";
+        lowOrHi.textContent="Last guess was too high";
     }
+    guessCount++;
+    guessField.value="";
+    guessField.focus();
+
+}
 }
 
+guessSubmit.addEventListener("click", checkGuess)
 
-guessCunt++;
-guessField.value="";
-guessField.focus();
+function setGameOver(){
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    resetButton = document.creeateElement("button");
+    resetButton.textContent = "Start new game"
+    document.body.append(resetButton);
+    resetButton.addEventListener("click", resetGame)
+}
+function resetGame() {
+    guessCount = 1;
 
+    const resetParas=document.querySelectorAll(".resultParas p");
+    for (const resetPara of resetParas){
+        resetPara.textContent="";
+    }
 
+    resetButton.parentNode.removeChid(resetButton);
+
+    guessField.disabled=false;
+    guessSubmit.dissabled=false
+    guessField.value="";
+    guessField.focus();
+
+    lastResult.style.backgroundColor="white";
+
+    randomNumber=math.flor(math.random()*100)+1
 }
      </script>
     </body>
