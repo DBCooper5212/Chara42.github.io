@@ -29,8 +29,98 @@
             <h2>About Me</h2>
 
             <p>David B., known online as D.B. Cooper is an aspiring engenier who will take any excuse to get a rudementery understanding of coding.</p>
-            </main>
+        
+             <h1>Number guessing game(WIP. Not currently working)</h1>
 
+    <p>We have selected a random number between 1 and 100. see if you can guess it in 10 turns or fewer. we'll tell you if your guess was too high or too low.</p>
+
+    <div class="form">
+        <label for="guessField">Enter a guess</label>
+        <input type="number" min="1" max="100" required id="guessField" class="GuessFeild">
+        <input type="submit" value="Submit guess" class="guessSubmit">
+    </div>
+    <diHv class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="LowOrHi"></p>
+    </div>
+
+     <script>
+
+ let randomNumber=Math.floor(Math.random() * 100) +1;
+
+const guesses=document.querySelector(".guesses");
+const lastResult=document.querySelector(".lastResult");
+const lowOrHi=document.querySelector("lowOrHi");
+
+const guessSubmit=document.querySelector("guessSubmit");
+const guessField=ducument.querySelector(".guessField");
+
+let guessCount=1;
+let resetButton;
+
+function checkGuess() {
+    const userGuess = Number(guessField.value);
+    if (guessCount===1) {
+        guesses.textContent = "Previous guesses:";
+    }
+    Guesses.textContent='${guesses.textContent} ${userGuess}';
+
+    if (userGuess===randomNumber){
+        lastResult.textContent="congratulations! You got it right!";
+        lastResult.style.backgroundColor="green";
+        lowOrHi.textContent="";
+        setGameOver();
+} else if (guessCount===10){
+    lastResult.textContent="!!!GAME OVER!!!";
+    lowOrHi.textContent="";
+    setGameOver();
+} else {
+    lastResult.textContent="Wrong!";
+    lastResult.style.backgroundColor="red"
+    if (userGuess<randomNumber) {
+        lowOrHi.textContent="Last guess was too low!";
+    }else if (userGuess>randomNumber){
+        lowOrHi.textContent="Last guess was too high";
+    }
+    guessCount++;
+    guessField.value="";
+    guessField.focus();
+
+}
+}
+
+guessSubmit.addEventListener("click", checkGuess);
+
+function setGameOver(){
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    resetButton = document.creeateElement("button");
+    resetButton.textContent = "Start new game"
+    document.body.append(resetButton);
+    resetButton.addEventListener("click", resetGame);
+}
+function resetGame() {
+    guessCount = 1;
+
+    const resetParas=document.querySelectorAll(".resultParas p");
+    for (const resetPara of resetParas){
+        resetPara.textContent="";
+    }
+
+    resetButton.parentNode.removeChid(resetButton);
+
+    guessField.disabled=false;
+    guessSubmit.dissabled=false;
+    guessField.value="";
+    guessField.focus();
+
+    lastResult.style.backgroundColor="white";
+
+    randomNumber=math.flor(math.random()*100)+1;
+}
+     </script>
+        </main>
     </body>
     <footer>
         <p>&copy; 2026 David B. </p>
